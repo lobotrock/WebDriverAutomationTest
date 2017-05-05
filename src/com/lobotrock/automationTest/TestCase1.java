@@ -27,12 +27,21 @@ public class TestCase1 {
 	public static Properties prop;
 
 	public static void main(String[] args){
+		String propertyFile = "";
+		if(args.length == 1){
+			propertyFile = args[0];
+		}
+		else{
+			System.out.println("Property file required!");
+			System.exit(1);
+		}
+		
 		prop = new Properties();
 		InputStream input = null;
 
 		try {
 
-			input = new FileInputStream("config.properties");
+			input = new FileInputStream(propertyFile);
 
 			// load a properties file
 			prop.load(input);
@@ -102,5 +111,6 @@ public class TestCase1 {
 		//Deleting a row, but canceling the confirmation
 		leads.clickDeleteByTableSearch("California", false);
 		
+		driver.quit();
 	}
 }
